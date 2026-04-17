@@ -3,6 +3,7 @@ import asyncio
 import tempfile
 import base64
 import os
+import subprocess
 import concurrent.futures
 
 try:
@@ -208,7 +209,7 @@ st.markdown(f"## 📖 Lesson {lesson_number}: {lesson_data['topic']}")
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["💬 Conversations", "📚 Vocabulary", "📖 Grammar", "🎧 Pronunciation", "❓ Quiz"])
 
-# ----- Audio function (French voice) using subprocess to avoid asyncio issues -----
+# ----- Audio function (French voice) using subprocess (no asyncio issues) -----
 def generate_audio(text, output_path):
     """Generate audio using edge-tts command line tool (synchronous)."""
     cmd = ["edge-tts", "--voice", "fr-FR-HenriNeural", "--text", text, "--write-media", output_path]
