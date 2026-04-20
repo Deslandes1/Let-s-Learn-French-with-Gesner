@@ -129,124 +129,83 @@ with st.sidebar:
         st.session_state.authenticated = False
         st.rerun()
 
-# ========== CONVERSATIONS ENTRE ITA ET KETTELY (EN FRANÇAIS) ==========
+# ========== CONVERSATIONS NATURELLES (sans astérisques) ==========
 def generer_conversation(lesson_num):
     """
     Retourne une liste de 3 conversations en français entre Ita et Kettely.
-    Chaque conversation raconte l'histoire de Gesner Deslandes (Tiboul),
-    son parcours en Haïti, ses succès en logiciel, et comment il enseigne à ses enfants.
+    Format propre, sans **, avec alternance naturelle.
     """
-    # Thèmes principaux pour chaque leçon (de 1 à 20)
     themes = [
-        (1, "L'enfance de Tiboul – sa curiosité", "Il démontait tout pour comprendre comment ça marche."),
-        (2, "Trouver un vieil ordinateur à la poubelle", "C'est là qu'il est tombé amoureux de la technologie."),
-        (3, "Apprendre l'anglais sur YouTube", "Il regardait des tutoriels toute la nuit, même avec une connexion lente."),
-        (4, "Son premier programme : une calculatrice", "Pour nous, c'était un miracle."),
-        (5, "Créer un logiciel de facturation pour un petit magasin", "Le propriétaire l'a payé avec un sac de riz."),
-        (6, "Le bouche‑à‑oreille et ses premiers contrats", "Il n'avait que 17 ans, mais sa réputation grandissait."),
-        (7, "Fonder GlobalInternet.py", "Il a dit : 'Maman, je vais construire des logiciels pour le monde entier.'"),
-        (8, "Engager ses propres enfants", "Aujourd'hui, Gesner Junior, Roosevelt, Sebastien et Zendaya travaillent avec lui."),
-        (9, "Comment il enseigne le code à ses enfants", "Il leur fait construire de vrais projets, pas seulement des exercices."),
-        (10, "Les enfants créent leur première application ensemble", "Un jeu pour attraper de l'argent – très mignon."),
-        (11, "Premier client international (Canada)", "Il était nerveux, mais l'affaire s'est parfaitement déroulée."),
-        (12, "Utiliser son succès pour aider les jeunes Haïtiens", "Il donne des ateliers gratuits à Port‑au‑Prince."),
-        (13, "Son approche de résolution de problèmes", "Il lit des articles de recherche puis construit des prototypes."),
-        (14, "Les outils IA qu'il a créés pour les médecins et étudiants", "Aujourd'hui, les hôpitaux utilisent son livre de terminologie médicale."),
-        (15, "Voir ses petits‑enfants apprendre le code", "Kettely a dit : 'Ita, notre sang coule dans leurs doigts.'"),
-        (16, "Quatre générations d'apprenants dans la famille Deslandes", "De Tiboul au petit bébé Gesner."),
-        (17, "Conseils pour les parents", "N'abandonnez jamais les idées folles de votre enfant."),
-        (18, "Conseils pour les enfants", "Vous n'avez pas besoin d'une école chic – juste de curiosité et de persévérance."),
-        (19, "Le message de Gesner au monde", "Le savoir est la seule chose qu'on ne peut pas vous enlever."),
-        (20, "Que nos âmes reposent en paix", "Car ce qu'il a bâti continuera d'enseigner longtemps après nous.")
+        (1, "l'enfance de Tiboul – sa curiosité", "Il démontait tout pour comprendre comment ça marche."),
+        (2, "trouver un vieil ordinateur à la poubelle", "C'est là qu'il est tombé amoureux de la technologie."),
+        (3, "apprendre l'anglais sur YouTube", "Il regardait des tutoriels toute la nuit, même avec une connexion lente."),
+        (4, "son premier programme : une calculatrice", "Pour nous, c'était un miracle."),
+        (5, "créer un logiciel de facturation pour un petit magasin", "Le propriétaire l'a payé avec un sac de riz."),
+        (6, "le bouche‑à‑oreille et ses premiers contrats", "Il n'avait que 17 ans, mais sa réputation grandissait."),
+        (7, "fonder GlobalInternet.py", "Il a dit : 'Maman, je vais construire des logiciels pour le monde entier.'"),
+        (8, "engager ses propres enfants", "Aujourd'hui, Gesner Junior, Roosevelt, Sebastien et Zendaya travaillent avec lui."),
+        (9, "comment il enseigne le code à ses enfants", "Il leur fait construire de vrais projets, pas seulement des exercices."),
+        (10, "les enfants créent leur première application ensemble", "Un jeu pour attraper de l'argent – très mignon."),
+        (11, "premier client international (Canada)", "Il était nerveux, mais l'affaire s'est parfaitement déroulée."),
+        (12, "utiliser son succès pour aider les jeunes Haïtiens", "Il donne des ateliers gratuits à Port‑au‑Prince."),
+        (13, "son approche de résolution de problèmes", "Il lit des articles de recherche puis construit des prototypes."),
+        (14, "les outils IA qu'il a créés pour les médecins et étudiants", "Aujourd'hui, les hôpitaux utilisent son livre de terminologie médicale."),
+        (15, "voir ses petits‑enfants apprendre le code", "Kettely a dit : 'Ita, notre sang coule dans leurs doigts.'"),
+        (16, "quatre générations d'apprenants dans la famille Deslandes", "De Tiboul au petit bébé Gesner."),
+        (17, "conseils pour les parents", "N'abandonnez jamais les idées folles de votre enfant."),
+        (18, "conseils pour les enfants", "Vous n'avez pas besoin d'une école chic – juste de curiosité et de persévérance."),
+        (19, "le message de Gesner au monde", "Le savoir est la seule chose qu'on ne peut pas vous enlever."),
+        (20, "que nos âmes reposent en paix", "Car ce qu'il a bâti continuera d'enseigner longtemps après nous.")
     ]
-    # Trouver le thème pour la leçon (groupes de 2)
     idx = (lesson_num - 1) // 2
     if idx >= len(themes):
         idx = len(themes) - 1
     theme, phrase1, phrase2 = themes[idx]
     
-    # Trois conversations par leçon
-    conv1 = f"""
-**Ita :** Kettely, tu te souviens de {theme} ?
-
-**Kettely :** Oh oui, Ita. {phrase1}
-
-**Ita :** Et puis {phrase2}
-
-**Kettely :** Ce garçon ne nous a jamais cessé d'émerveiller.
-
-**Ita :** Il était toujours si concentré. Même quand nous n'avions pas d'argent, il trouvait une solution.
-
-**Kettely :** Regarde‑le maintenant. Un véritable scientifique et entrepreneur.
-
-**Ita :** Et il enseigne la même chose à ses propres enfants.
-
-**Kettely :** Gesner Junior, Roosevelt, Sebastien, Zendaya – ils suivent tous ses traces.
-
-**Ita :** C'est notre plus grande récompense, Kettely.
-
-**Kettely :** En effet. Que nos âmes reposent en paix, sachant que le savoir est désormais leur guide.
-"""
+    # Conversation 1
+    conv1 = f"""Ita : Kettely, tu te souviens de {theme} ?
+Kettely : Oh oui, Ita. {phrase1}
+Ita : Et puis {phrase2}
+Kettely : Ce garçon ne nous a jamais cessé d'émerveiller.
+Ita : Il était toujours si concentré. Même quand nous n'avions pas d'argent, il trouvait une solution.
+Kettely : Regarde‑le maintenant. Un véritable scientifique et entrepreneur.
+Ita : Et il enseigne la même chose à ses propres enfants.
+Kettely : Gesner Junior, Roosevelt, Sebastien, Zendaya – ils suivent tous ses traces.
+Ita : C'est notre plus grande récompense, Kettely.
+Kettely : En effet. Que nos âmes reposent en paix, sachant que le savoir est désormais leur guide."""
     
-    conv2 = f"""
-**Kettely :** Ita, je pensais à comment Gesner a lutté pour apprendre la programmation.
-
-**Ita :** Il n'avait même pas un vrai ordinateur au début. Il utilisait la vieille machine de la bibliothèque.
-
-**Kettely :** Et quand elle est tombée en panne, il l'a réparée lui‑même !
-
-**Ita :** C'est là que j'ai su qu'il deviendrait ingénieur.
-
-**Kettely :** Aujourd'hui, il construit des entreprises entières depuis son ordinateur portable.
-
-**Ita :** Et il vend ses produits à des clients du monde entier.
-
-**Kettely :** Tu te souviens de son premier logiciel vendu 20 dollars ? Il était si heureux.
-
-**Ita :** Maintenant ses formations coûtent 299 dollars, et les gens sont ravis de payer.
-
-**Kettely :** Parce qu'ils savent qu'ils reçoivent une vraie valeur.
-
-**Ita :** C'est la différence – il donne du savoir, pas seulement du code.
-
-**Kettely :** Et il apprend à ses enfants à faire de même.
-
-**Ita :** Ils deviendront autonomes, tout comme lui.
-
-**Kettely :** Et puis ils enseigneront à leurs propres enfants.
-
-**Ita :** Voilà l'héritage d'un véritable éducateur.
-"""
+    # Conversation 2
+    conv2 = f"""Kettely : Ita, je pensais à comment Gesner a lutté pour apprendre la programmation.
+Ita : Il n'avait même pas un vrai ordinateur au début. Il utilisait la vieille machine de la bibliothèque.
+Kettely : Et quand elle est tombée en panne, il l'a réparée lui‑même !
+Ita : C'est là que j'ai su qu'il deviendrait ingénieur.
+Kettely : Aujourd'hui, il construit des entreprises entières depuis son ordinateur portable.
+Ita : Et il vend ses produits à des clients du monde entier.
+Kettely : Tu te souviens de son premier logiciel vendu 20 dollars ? Il était si heureux.
+Ita : Maintenant ses formations coûtent 299 dollars, et les gens sont ravis de payer.
+Kettely : Parce qu'ils savent qu'ils reçoivent une vraie valeur.
+Ita : C'est la différence – il donne du savoir, pas seulement du code.
+Kettely : Et il apprend à ses enfants à faire de même.
+Ita : Ils deviendront autonomes, tout comme lui.
+Kettely : Et puis ils enseigneront à leurs propres enfants.
+Ita : Voilà l'héritage d'un véritable éducateur."""
     
-    conv3 = f"""
-**Ita :** Kettely, quel conseil donnerais‑tu aux autres parents ?
-
-**Kettely :** Croyez aux rêves de votre enfant, même s'ils semblent impossibles.
-
-**Ita :** Et pour les enfants ?
-
-**Kettely :** N'arrêtez jamais d'apprendre. Utilisez Internet. Construisez des choses. Échouez, puis réessayez.
-
-**Ita :** Gesner a échoué maintes fois, mais il n'a jamais abandonné.
-
-**Kettely :** Voilà pourquoi il en est là aujourd'hui.
-
-**Ita :** Il enseigne maintenant cette leçon à ses propres enfants.
-
-**Kettely :** Et ils construisent déjà leurs propres logiciels.
-
-**Ita :** Gesner Junior apprend Python, Roosevelt conçoit des sites web.
-
-**Kettely :** Sebastien maîtrise l'IA, et Zendaya organise toute l'entreprise familiale.
-
-**Ita :** Ensemble, ils changeront Haïti et le monde.
-
-**Kettely :** Puissions‑nous reposer en paix, sachant que notre sang porte la graine de l'innovation.
-
-**Ita :** Et que Dieu les guide toujours.
-
-**Kettely :** Amen.
-"""
+    # Conversation 3
+    conv3 = f"""Ita : Kettely, quel conseil donnerais‑tu aux autres parents ?
+Kettely : Croyez aux rêves de votre enfant, même s'ils semblent impossibles.
+Ita : Et pour les enfants ?
+Kettely : N'arrêtez jamais d'apprendre. Utilisez Internet. Construisez des choses. Échouez, puis réessayez.
+Ita : Gesner a échoué maintes fois, mais il n'a jamais abandonné.
+Kettely : Voilà pourquoi il en est là aujourd'hui.
+Ita : Il enseigne maintenant cette leçon à ses propres enfants.
+Kettely : Et ils construisent déjà leurs propres logiciels.
+Ita : Gesner Junior apprend Python, Roosevelt conçoit des sites web.
+Kettely : Sebastien maîtrise l'IA, et Zendaya organise toute l'entreprise familiale.
+Ita : Ensemble, ils changeront Haïti et le monde.
+Kettely : Puissions‑nous reposer en paix, sachant que notre sang porte la graine de l'innovation.
+Ita : Et que Dieu les guide toujours.
+Kettely : Amen."""
+    
     return [conv1, conv2, conv3]
 
 # ========== LISTES DE BASE (vocabulaire, expressions, grammaire, sujets de rédaction) ==========
@@ -383,7 +342,6 @@ vocabulaire_fr = [
     "sans", "témoin", "émerveillement", "mot", "travail", "monde", "inquiétude", "valeur", "voudrais", "écrire", "faux", "cour", "année",
     "jeunesse", "zéro", "zone"
 ]
-# Assurer assez de mots
 vocabulaire_fr = vocabulaire_fr * 3
 
 expressions_fr = [
@@ -466,18 +424,18 @@ sujets_redaction = [
 ]
 
 conseils_redaction = """
-**Conseils pour la rédaction en français**
+Conseils pour la rédaction en français
 
-1. **Comprenez le sujet** – Répondez exactement à la question posée.
-2. **Planifiez avant d'écrire** – Prenez 2–3 minutes pour structurer vos idées.
-3. **Une thèse claire** – La première phrase de l'introduction doit énoncer votre position.
-4. **Phrases de sujet** – Chaque paragraphe doit commencer par une phrase qui introduit l'idée principale.
-5. **Exemples concrets** – Évitez les généralités ; utilisez des exemples réels ou hypothétiques.
-6. **Mots de liaison** – Cependant, par conséquent, de plus, par exemple.
-7. **Variez la longueur des phrases** – Mélangez phrases courtes et longues.
-8. **Relisez-vous** – Laissez 2–3 minutes pour corriger la grammaire et l'orthographe.
-9. **Restez dans le sujet** – N'ajoutez pas d'informations hors de propos.
-10. **Écrivez au moins 250 mots** – Les essais plus longs ont tendance à mieux réussir s'ils sont bien organisés.
+1. Comprenez le sujet – Répondez exactement à la question posée.
+2. Planifiez avant d'écrire – Prenez 2–3 minutes pour structurer vos idées.
+3. Une thèse claire – La première phrase de l'introduction doit énoncer votre position.
+4. Phrases de sujet – Chaque paragraphe doit commencer par une phrase qui introduit l'idée principale.
+5. Exemples concrets – Évitez les généralités ; utilisez des exemples réels ou hypothétiques.
+6. Mots de liaison – Cependant, par conséquent, de plus, par exemple.
+7. Variez la longueur des phrases – Mélangez phrases courtes et longues.
+8. Relisez-vous – Laissez 2–3 minutes pour corriger la grammaire et l'orthographe.
+9. Restez dans le sujet – N'ajoutez pas d'informations hors de propos.
+10. Écrivez au moins 250 mots – Les essais plus longs ont tendance à mieux réussir s'ils sont bien organisés.
 """
 
 def get_items(base_list, lesson_num, count):
